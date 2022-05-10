@@ -4,6 +4,9 @@
  */
 package Question2;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author nhut0
@@ -14,36 +17,33 @@ public class solution2 {
     
     
  
-    public void result(int input){
-        char[] output = new char[2 * input];
-        output[0] = '(';
-        output[1] = ')';
-        foo(output, 1, input - 1, input, input);
+    public static void result(int input){
+        int   n = 3;
+     
+        ArrayList<String> ans = new ArrayList<>();
+        find(input, 0, 0, "", ans);
+        for (String s : ans) {
+            System.out.println(s);
+        }
         
     }
 
-   public void foo(char[] output, int index, int open, int close,
-        int pairs) {
-    int i;
-
-    if (index == 2 * pairs) {
-        for (i = 0; i < 2 * pairs; i++)
-            System.out.print(output[i]);
-        System.out.println('\n');
-        return;
+   public static void find(int n, int open, int close,
+                     String s, ArrayList<String> ans)
+   {
+        if (open == n && close == n) {
+            ans.add(s);
+            return;
+        }
+       
+        if (open < n) {
+            find(n, open + 1, close, s + "(",
+                                ans);
+        }
+        if (close < open) {
+            find(n, open, close + 1, s + ")",
+                                ans);
+        }
     }
-
-    if (open != 0) {
-        output[index] = '(';
-        foo(output, index + 1, open - 1, close, pairs);
-    }
-
-    if ((close != 0) && (pairs - close + 1 <= pairs - open)) {
-        output[index] = ')';
-        foo(output, index + 1, open, close - 1, pairs);
-    }
-
-    return;
-   }
-     
+    
 }

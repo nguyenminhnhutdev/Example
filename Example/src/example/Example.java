@@ -6,6 +6,7 @@ package example;
 
 import Question1.solution1;
 import Question2.solution2;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -28,7 +29,8 @@ public class Example {
         System.out.println("nhập input: ");
          int input =0;
         input = scanner.nextInt();
-        
+       
+       solution2.result(input);
       
     }
     
